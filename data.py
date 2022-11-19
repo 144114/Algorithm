@@ -2,8 +2,9 @@ import pandas as pd
 from seat import *
 
 ticket_number = 0
-def Data_creation(number_of_data=30):
-    df = pd.read_excel("USDOT_Consumer_Airfare_2007-2017-1.xlsx")
+df = pd.read_excel("USDOT_Consumer_Airfare_2007-2017-1.xlsx")
+
+def Data_creation(number_of_data=30,df=df):
     Sample_data = df[["Year","City1","City2","Average Fare"]].sample(number_of_data)
     seat = Seats()
     Sample_data["Classes"] = [i for i in range(number_of_data)]
