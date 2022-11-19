@@ -58,10 +58,10 @@ class Seats:
 
     def random_time(self):
         self.hour = random.randint(0,23)
-        self.time = random.randint(0,59)
-        if self.time < 10:
-            self.time = f"{0}{self.time}"
-        return f"{self.hour}:{self.time}"
+        self.min = random.randint(0,59)
+        if self.min < 10:
+            self.min = f"{0}{self.min}"
+        return f"{self.hour}:{self.min}"
 
 
     def random_classes(self):
