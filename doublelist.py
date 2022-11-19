@@ -1,5 +1,5 @@
-from seat import *
 from data import *
+from seat import *
 
 class node:
     def __init__(self, data): #Final       
@@ -27,7 +27,6 @@ class Two_Dimensional_Double_Linked_List:
         self.length_list = 0
         self.columns_index = []
     
-
     def prepend(self, new_data): #Final
         self.append_left(self.hold)
         new_node_2D = node(new_data)
@@ -81,7 +80,26 @@ class Two_Dimensional_Double_Linked_List:
         if self.head is not None:  
             self.head.left = new_node
         self.head = new_node
-    
+
+    def delete_data_node(self,dele): #Final
+		# Base Case
+        if self.head is None or dele is None:
+	        return
+		
+		# If node to be deleted is head node
+        if self.head == dele:
+            self.head = dele.right
+
+		# Change next only if node to be deleted is NOT
+		# the last node
+        if dele.right is not None:
+            dele.right.left = dele.left
+	
+		# Change prev only if node to be deleted is NOT
+		# the first node
+        if dele.left is not None:
+            dele.left.right = dele.right
+
     def printList(self, node): #subject to change
 
         print("\nTraversal in forward direction")
@@ -137,6 +155,31 @@ class Two_Dimensional_Double_Linked_List:
             print("Error Column name")
         
         return data_out
+    
+    def delete_data(self, dele): #Final
+		
+		# Base Case
+        if self.mainhead is None or dele is None:
+	        return
+		
+		# If node to be deleted is head node
+        if self.mainhead == dele:
+            self.mainhead = dele.next
+
+		# Change next only if node to be deleted is NOT
+		# the last node
+        if dele.next is not None:
+            dele.next.prev = dele.prev
+	
+		# Change prev only if node to be deleted is NOT
+		# the first node
+        if dele.prev is not None:
+            dele.prev.next = dele.next
+        
+        for i in range(self.columns):
+            self.delete_data_node(dele)
+
+        self.rows -= 1
 
     def length(self): #Final
         for i in range(self.rows+1):
