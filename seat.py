@@ -12,6 +12,9 @@ class Seats:
         self.month = 0
         self.hour = 0
         self.min = 0
+
+    def list_adding(self):
+        pass
     
     def price_config(self,price):
         classes = self.random_classes()
