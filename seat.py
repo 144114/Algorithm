@@ -12,9 +12,6 @@ class Seats:
         self.month = 0
         self.hour = 0
         self.min = 0
-
-    def list_adding(self):
-        pass
     
     def price_config(self,price):
         classes = self.random_classes()
@@ -43,7 +40,7 @@ class Seats:
     def random_day(self):
         self.month = random.randint(1,12)
 
-        if self.month == 4 or self.month == 6 or self.month == 9 or self.month == 30:
+        if self.month == 4 or self.month == 6 or self.month == 9 or self.month == 11:
             self.day = random.randint(1,30)
         elif self.month == 2:
             self.day = random.randint(1,28)
@@ -54,15 +51,25 @@ class Seats:
     
     def random_date(self,year):
         day,month = self.random_day()
-        return f"{day}/{month}/{year}"
+
+        if day < 10 and month < 10:
+            return f"{year}/0{month}/0{day}"
+        elif month < 10:
+            return f"{year}/0{month}/{day}"
+        elif day < 10:
+            return f"{year}/{month}/0{day}"
+        else:
+            return f"{year}/{month}/{day}"
 
     def random_time(self):
         self.hour = random.randint(0,23)
-        self.min = random.randint(0,59)
-        if self.min < 10:
-            self.min = f"{0}{self.min}"
-        return f"{self.hour}:{self.min}"
+        self.time = random.randint(0,59)
+        if self.time < 10:
+            self.time = f"{0}{self.time}"
+        if self.hour < 10:
+            self.hour = f"{0}{self.hour}"
 
+        return f"{self.hour}:{self.time}"
 
     def random_classes(self):
         return list(self.classes.keys())[random.randint(0, 3)]
