@@ -1,5 +1,6 @@
 from data import *
 from seat import *
+from QuickSort import *
 
 class node:
     def __init__(self, data): #Final       
@@ -10,11 +11,10 @@ class node:
         self.left = None
         self.prev = None
         self.next = None
-
-
+        
 class Two_Dimensional_Double_Linked_List:
 
-    def __init__(self,row = 0,col = 0): #subject to change
+    def __init__(self,row = 0,col = 0): #Subject to change
         self.head = None
         self.head_down = None
         self.mainhead = None
@@ -100,7 +100,7 @@ class Two_Dimensional_Double_Linked_List:
         if dele.left is not None:
             dele.left.right = dele.right
 
-    def printList(self, node): #subject to change
+    def printList(self, node): #Subject to change
 
         print("\nTraversal in forward direction")
         #while node:
@@ -187,7 +187,7 @@ class Two_Dimensional_Double_Linked_List:
                 self.length_list += 1
         return self.length_list
 
-    def datatype(self): #subject to change
+    def datatype(self): #Subject to change
         counter = 0
         while node != None:
             if type(node) == str:
@@ -195,8 +195,45 @@ class Two_Dimensional_Double_Linked_List:
                 
             node = node.right
                 
-        #print("\nTraversal in reverse direction")
-        #while last:
-        #    print(" {}".format(last.data))
-        #   last = last.left
+    def sortbycolumn(self,col,mainnode): #Final
+        
+        index_of_data = self.return_column(column_name=self.columns_index[-1],node=mainnode.head)
+        data = self.return_column(column_name=col,node=mainnode.head)
+        print(self.columns_index)
+        quickSort(data, 0, len(data) - 1)
+        q = 0
+        l = []
+        hold_data = 0
+        hold_index = 0
+        for i in range(self.rows):
+            if hold_data == data[i]:
+                l.append(self.return_column(column_name=col,node=self.head).index(data[i],hold_index+1))
+                sd = self.return_column(column_name=col,node=self.head).index(data[i])
+            else:
+                l.append(self.return_column(column_name=col,node=self.head).index(data[i]))
+                sd = self.return_column(column_name=col,node=self.head).index(data[i])
+                hold_index = 0
+            while q < sd:
+                mainnode.mainhead = mainnode.mainhead.next
+                q += 1
+            q = 0
+            print(list(mainnode.mainhead.data))
+            while q < sd:
+                mainnode.mainhead = mainnode.mainhead.prev
+                q += 1
+            q = 0
+            hold_data = data[i]
+            hold_index = self.return_column(column_name=col,node=self.head).index(data[i],hold_index)
+    
+    def search(self,col,):
+        pass
+
+    def buy(self):
+        pass
+
+    def sortbycolumnrange(self):
+        pass
+
+
+    
  
