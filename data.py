@@ -56,7 +56,7 @@ def Data_creation_randomticketnumber(number_of_data=30,df=df,max_ticket=1000):
         while ticket in ticket_list:
             ticket = random.randint(1,max_ticket)
         ticket_list.append(ticket)
-        Sample_data["Ticket Number"].iloc[i] = ticket_list[i]
+        Sample_data["Ticket Number"].iloc[i] = ticket
         
     Sample_data = Sample_data.drop(["Year"],axis=1)
     return Sample_data 
