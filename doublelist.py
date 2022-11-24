@@ -46,14 +46,12 @@ class Two_Dimensional_Double_Linked_List:
         
         for i in range(self.columns):
             self.append_right(new_data[i])
-        #if type(new_data) == list or type(new_data) == pd.core.frame.DataFrame:
         self.append_right(self.hold)
         
-
         if self.mainhead is None:
             self.mainhead = new_node_2D
             return
-
+	
         last = self.mainhead
         while last.next:
             last = last.next
@@ -83,30 +81,23 @@ class Two_Dimensional_Double_Linked_List:
         self.head = new_node
 
     def delete_data_node(self,dele): #Final
-		# Base Case
+
         if self.head is None or dele is None:
 	        return
-		
-		# If node to be deleted is head node
+	
         if self.head == dele:
             self.head = dele.right
 
-		# Change next only if node to be deleted is NOT
-		# the last node
         if dele.right is not None:
             dele.right.left = dele.left
-	
-		# Change prev only if node to be deleted is NOT
-		# the first node
+
         if dele.left is not None:
             dele.left.right = dele.right
 
     def printList(self, node): #Final
 
         print("\nTraversal in forward direction")
-        #while node:
-        #for i in range(3):
-        #    node = node.down
+
         for i in range(self.rows+1):
             self.list = []
             for j in range(self.columns+1):
@@ -116,7 +107,6 @@ class Two_Dimensional_Double_Linked_List:
                             self.list.append(node.data)
                         except:
                             pass
-                        #print(node.data,end = "")
                     else:
                         try:
                             node = node.right
@@ -129,8 +119,6 @@ class Two_Dimensional_Double_Linked_List:
                         self.list.append(node.data)
                     except:
                         pass
-
-                #print(node.data,end = "")
             print(self.list)
     
     def add_column_index(self,data): #Final
@@ -167,22 +155,16 @@ class Two_Dimensional_Double_Linked_List:
         return data_out
     
     def delete_data(self, dele): #Final
-		
-		# Base Case
+
         if self.mainhead is None or dele is None:
 	        return
-		
-		# If node to be deleted is head node
+
         if self.mainhead == dele:
             self.mainhead = dele.next
 
-		# Change next only if node to be deleted is NOT
-		# the last node
         if dele.next is not None:
             dele.next.prev = dele.prev
-	
-		# Change prev only if node to be deleted is NOT
-		# the first node
+
         if dele.prev is not None:
             dele.prev.next = dele.next
         
@@ -218,10 +200,8 @@ class Two_Dimensional_Double_Linked_List:
             if hold_data == data[i]:
                 l.append(mainnode.return_column(column_name=col,node=mainnode.head).index(data[i],hold_index+1))
                 hold_index = hold_index + 1
-                #sd = self.return_column(column_name=col,node=self.head).index(data[i],hold_index+1)
             else:
                 l.append(mainnode.return_column(column_name=col,node=mainnode.head).index(data[i]))
-                #sd = self.return_column(column_name=col,node=self.head).index(data[i])
                 hold_index = 0
             while q < l[i]:
                 mainnode.mainhead = mainnode.mainhead.next
@@ -235,7 +215,6 @@ class Two_Dimensional_Double_Linked_List:
             q = 0
             hold_data = data[i]
             hold_index = mainnode.return_column(column_name=col,node=mainnode.head).index(data[i],hold_index)
-        #print(l)
         if mode == 1:
             return l,data,unsorted
       
@@ -334,10 +313,8 @@ class Two_Dimensional_Double_Linked_List:
             if hold_data == column_range_data[i]:
                 l.append(mainnode.return_column(column_name=col,node=mainnode.head).index(column_range_data[i],hold_index+1))
                 hold_index = hold_index + 1
-                #sd = self.return_column(column_name=col,node=self.head).index(data[i],hold_index+1)
             else:
                 l.append(mainnode.return_column(column_name=col,node=mainnode.head).index(column_range_data[i]))
-                #sd = self.return_column(column_name=col,node=self.head).index(data[i])
                 hold_index = 0
             while q < l[i]:
                 mainnode.mainhead = mainnode.mainhead.next
